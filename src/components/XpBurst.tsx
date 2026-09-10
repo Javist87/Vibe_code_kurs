@@ -11,7 +11,7 @@ export function XpBurst({ popups }: { popups: XpPopup[] }) {
       {popups.map((popup) => (
         <span
           key={popup.id}
-          className="animate-xp-float absolute font-heading text-lg font-extrabold text-amber-500"
+          className="animate-xp-float absolute font-heading text-lg font-extrabold text-[color:var(--xp-text)]"
         >
           +{popup.amount} XP
         </span>

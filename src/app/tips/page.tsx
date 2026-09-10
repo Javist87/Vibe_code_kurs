@@ -112,12 +112,12 @@ function LinkCard({ resource }: { resource: ResourceLink }) {
       href={resource.href}
       target="_blank"
       rel="noreferrer"
-      className="flex flex-col gap-1 rounded-2xl bg-white p-4 shadow-sm transition hover:shadow-md"
+      className="flex flex-col gap-1 rounded-2xl border border-brand-100 bg-surface p-4 shadow-sm transition hover:shadow-md"
     >
-      <span className="font-heading font-extrabold text-violet-900">
+      <span className="font-heading font-extrabold text-brand-900">
         {resource.title}
       </span>
-      <span className="text-sm font-semibold text-violet-500">
+      <span className="text-sm font-semibold text-accent-500">
         {resource.description}
       </span>
     </a>
@@ -139,10 +139,10 @@ export default function TipsPage() {
   }
 
   return (
-    <main className="flex flex-1 flex-col items-center gap-8 bg-gradient-to-b from-violet-50 to-white px-5 py-10">
+    <main className="flex flex-1 flex-col items-center gap-8 bg-gradient-to-b from-brand-50 to-background px-5 py-10">
       <Link
         href="/learn"
-        className="self-start text-sm font-bold text-violet-400 hover:text-violet-600"
+        className="self-start text-sm font-bold text-brand-400 hover:text-accent-600"
       >
         ← Tilbake til stien
       </Link>
@@ -150,29 +150,29 @@ export default function TipsPage() {
       <Mascot mood="thinking" className="h-24 w-24" />
 
       <div className="text-center">
-        <h1 className="font-heading text-2xl font-extrabold text-violet-900">
+        <h1 className="font-heading text-2xl font-extrabold text-brand-900">
           Tips, triks og nyttige lenker
         </h1>
-        <p className="mt-1 max-w-md font-semibold text-violet-500">
+        <p className="mt-1 max-w-md font-semibold text-accent-500">
           Praktiske huskeregler og verktøy som gjør vibecoding-hverdagen din
           enklere.
         </p>
       </div>
 
       <section className="w-full max-w-2xl">
-        <h2 className="mb-3 font-heading text-lg font-extrabold text-violet-900">
+        <h2 className="mb-3 font-heading text-lg font-extrabold text-brand-900">
           Tips og triks
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
           {TIPS.map((tip) => (
             <div
               key={tip.title}
-              className="rounded-2xl bg-white p-4 shadow-sm"
+              className="rounded-2xl border border-brand-100 bg-surface p-4 shadow-sm"
             >
-              <p className="font-extrabold text-violet-800">
+              <p className="font-extrabold text-brand-800">
                 <span aria-hidden>{tip.emoji}</span> {tip.title}
               </p>
-              <p className="mt-1 text-sm font-semibold text-violet-500">
+              <p className="mt-1 text-sm font-semibold text-accent-500">
                 {tip.body}
               </p>
             </div>
@@ -181,7 +181,7 @@ export default function TipsPage() {
       </section>
 
       <section className="w-full max-w-2xl">
-        <h2 className="mb-3 font-heading text-lg font-extrabold text-violet-900">
+        <h2 className="mb-3 font-heading text-lg font-extrabold text-brand-900">
           AI-verktøy
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -192,7 +192,7 @@ export default function TipsPage() {
       </section>
 
       <section className="w-full max-w-2xl">
-        <h2 className="mb-3 font-heading text-lg font-extrabold text-violet-900">
+        <h2 className="mb-3 font-heading text-lg font-extrabold text-brand-900">
           Lær mer
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">

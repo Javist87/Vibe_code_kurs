@@ -34,6 +34,7 @@ interface ProfileContextValue {
     lessonId: string,
     xpEarnedInLesson: number
   ) => CompleteLessonResult;
+  updateProfile: (updates: Partial<Pick<Profile, "name" | "level">>) => void;
   resetProfile: () => void;
 }
 
@@ -102,13 +103,29 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
+  const updateProfile = useCallback(
+    (updates: Partial<Pick<Profile, "name" | "level">>) => {
+      const current = getProfileSnapshot();
+      if (!current) return;
+      writeProfile({ ...current, ...updates });
+    },
+    []
+  );
+
   const resetProfile = useCallback(() => {
     writeProfile(null);
   }, []);
 
   const value = useMemo(
-    () => ({ profile, isLoaded, startProfile, completeLesson, resetProfile }),
-    [profile, isLoaded, startProfile, completeLesson, resetProfile]
+    () => ({
+      profile,
+      isLoaded,
+      startProfile,
+      completeLesson,
+      updateProfile,
+      resetProfile,
+    }),
+    [profile, isLoaded, startProfile, completeLesson, updateProfile, resetProfile]
   );
 
   return (

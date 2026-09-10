@@ -17,7 +17,7 @@ export function ModulePath({
     return (
       <section className="flex flex-col items-center gap-4 opacity-60">
         <div
-          className={`w-full max-w-md rounded-3xl bg-gradient-to-r ${mod.gradient} p-5 text-white shadow-md grayscale`}
+          className={`module-banner w-full max-w-md rounded-3xl bg-gradient-to-r ${mod.gradient} p-5 text-white shadow-md grayscale`}
         >
           <div className="flex items-center gap-3">
             <span className="text-3xl">{mod.emoji}</span>
@@ -36,7 +36,7 @@ export function ModulePath({
   return (
     <section className="flex flex-col items-center gap-6">
       <div
-        className={`w-full max-w-md rounded-3xl bg-gradient-to-r ${mod.gradient} p-5 text-white shadow-md`}
+        className={`module-banner w-full max-w-md rounded-3xl bg-gradient-to-r ${mod.gradient} p-5 text-white shadow-md`}
       >
         <div className="flex items-center gap-3">
           <span className="text-3xl">{mod.emoji}</span>
@@ -60,8 +60,8 @@ export function ModulePath({
           const nodeClasses = completed
             ? "bg-emerald-400 border-emerald-500 text-white"
             : unlocked
-              ? "bg-violet-600 border-violet-700 text-white ring-4 ring-violet-200"
-              : "bg-slate-200 border-slate-300 text-slate-400";
+              ? "bg-accent-600 border-accent-700 text-white ring-4 ring-brand-200"
+              : "bg-brand-100 border-brand-200 text-brand-400";
 
           const content = (
             <div
@@ -77,7 +77,7 @@ export function ModulePath({
               </div>
               <span
                 className={`max-w-[7rem] text-center text-xs font-bold ${
-                  unlocked ? "text-violet-800" : "text-slate-400"
+                  unlocked ? "text-brand-800" : "text-brand-400"
                 }`}
               >
                 {lesson.title}
