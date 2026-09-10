@@ -1,4 +1,4 @@
-# Vibeskolen
+<img src="public/logo-full.svg" alt="Vibeskolen" width="320" />
 
 En lekende, Duolingo-inspirert læringsapp som lærer nybegynnere å komme i gang med vibecoding - å bygge programvare i tett samarbeid med AI.
 
