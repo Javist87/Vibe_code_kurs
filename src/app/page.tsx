@@ -54,6 +54,10 @@ export default function Home() {
         <PrimaryButton className="text-lg">Kom i gang - gratis</PrimaryButton>
       </Link>
 
+      <h2 className="font-heading text-xl font-bold text-violet-800">
+        Takk til Astar kursholdere
+      </h2>
+
       <p className="text-xs font-semibold text-violet-400">
         Testversjon &middot; fremgangen din lagres kun i denne nettleseren
       </p>
