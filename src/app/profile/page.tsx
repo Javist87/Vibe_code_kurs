@@ -31,9 +31,14 @@ export default function ProfilePage() {
 
   return (
     <main className="flex flex-1 flex-col items-center gap-8 bg-gradient-to-b from-violet-50 to-white px-5 py-10">
-      <Link href="/learn" className="self-start text-sm font-bold text-violet-400 hover:text-violet-600">
-        ← Tilbake til stien
-      </Link>
+      <div className="flex w-full max-w-md items-center justify-between">
+        <Link href="/learn" className="text-sm font-bold text-violet-400 hover:text-violet-600">
+          ← Tilbake til stien
+        </Link>
+        <Link href="/tips" className="text-sm font-bold text-violet-400 hover:text-violet-600">
+          💡 Tips og triks
+        </Link>
+      </div>
 
       <Mascot mood="happy" className="h-28 w-28" />
 

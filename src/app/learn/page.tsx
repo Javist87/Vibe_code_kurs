@@ -40,6 +40,12 @@ export default function LearnPage() {
           </div>
         </Link>
         <div className="flex items-center gap-2">
+          <Link
+            href="/tips"
+            className="rounded-full bg-violet-50 px-3 py-1.5 text-sm font-extrabold text-violet-600 shadow-sm hover:bg-violet-100"
+          >
+            💡 Tips
+          </Link>
           <StreakPill streak={profile.streak} />
           <XpPill xp={profile.xp} />
         </div>
