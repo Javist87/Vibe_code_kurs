@@ -80,10 +80,11 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       const alreadyCompleted = current.completedLessons.includes(lessonId);
       const newStreak = computeStreakOnActivity(current);
       const leveledUpStreak = newStreak > (current.streak || 0);
+      const xpGained = alreadyCompleted ? 0 : xpEarnedInLesson;
 
       const updated: Profile = {
         ...current,
-        xp: current.xp + xpEarnedInLesson,
+        xp: current.xp + xpGained,
         streak: newStreak,
         lastActiveDate: todayKey(),
         completedLessons: alreadyCompleted
@@ -96,7 +97,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
 
       writeProfile(updated);
 
-      return { xpGained: xpEarnedInLesson, newBadgeIds, leveledUpStreak };
+      return { xpGained, newBadgeIds, leveledUpStreak };
     },
     []
   );
