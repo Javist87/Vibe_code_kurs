@@ -3,12 +3,110 @@
 :root {
   --background: #fdf6ff;
   --foreground: #1f1147;
+  --surface: #ffffff;
+  --font-heading-family: var(--font-baloo);
+
+  /* "Lekent" (barnevennlig) tema - fargeskala tilsvarende Tailwinds violet-palett */
+  --brand-50: #faf5ff;
+  --brand-100: #ede9fe;
+  --brand-200: #ddd6fe;
+  --brand-300: #c4b5fd;
+  --brand-400: #a78bfa;
+  --brand-700: #6d28d9;
+  --brand-800: #5b21b6;
+  --brand-900: #4c1d95;
+
+  --accent-300: #c4b5fd;
+  --accent-500: #8b5cf6;
+  --accent-600: #7c3aed;
+  --accent-700: #6d28d9;
+
+  --shadow-btn: #5b21b6;
+
+  --success-bg: #ecfdf5;
+  --success-border: #34d399;
+  --success-text: #065f46;
+  --danger-bg: #fff1f2;
+  --danger-border: #fb7185;
+  --danger-text: #9f1239;
+  --xp-bg: #fef3c7;
+  --xp-text: #b45309;
+  --streak-bg: #ffedd5;
+  --streak-text: #ea580c;
+
+  --mascot-primary: #8b5cf6;
+  --mascot-primary-dark: #6d28d9;
+  --mascot-antenna: #7c3aed;
+  --mascot-ear: #a78bfa;
+  --mascot-ink: #4c1d95;
+  --mascot-highlight: #f472b6;
+  --mascot-celebrate: #facc15;
+}
+
+/* "Seriøst" (voksent) tema - mørkt, stramt og uten feiringseffekter */
+:root[data-theme="serious"] {
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --surface: #161b22;
+  --font-heading-family: var(--font-nunito);
+
+  --brand-50: #161b22;
+  --brand-100: #21262d;
+  --brand-200: #30363d;
+  --brand-300: #3f4757;
+  --brand-400: #8b949e;
+  --brand-700: #c9d1d9;
+  --brand-800: #e6edf3;
+  --brand-900: #ffffff;
+
+  --accent-300: #7f1d1d;
+  --accent-500: #ef4444;
+  --accent-600: #dc2626;
+  --accent-700: #991b1b;
+
+  --shadow-btn: #7f1d1d;
+
+  --success-bg: rgba(16, 185, 129, 0.14);
+  --success-border: #10b981;
+  --success-text: #6ee7b7;
+  --danger-bg: rgba(220, 38, 38, 0.16);
+  --danger-border: #f87171;
+  --danger-text: #fecaca;
+  --xp-bg: rgba(245, 158, 11, 0.16);
+  --xp-text: #fbbf24;
+  --streak-bg: rgba(234, 88, 12, 0.16);
+  --streak-text: #fb923c;
+
+  --mascot-primary: #3f4757;
+  --mascot-primary-dark: #20242c;
+  --mascot-antenna: #4b5563;
+  --mascot-ear: #55606e;
+  --mascot-ink: #0d1117;
+  --mascot-highlight: #8b949e;
+  --mascot-celebrate: #dc2626;
+
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.375rem;
+  --radius-3xl: 0.5rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-heading: var(--font-baloo);
+  --color-surface: var(--surface);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-accent-300: var(--accent-300);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  --font-heading: var(--font-heading-family);
   --font-sans: var(--font-nunito);
 }
 
@@ -16,10 +114,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1, h2, h3, .font-heading {
-  font-family: var(--font-baloo), var(--font-nunito), sans-serif;
+  font-family: var(--font-heading-family), var(--font-nunito), sans-serif;
+}
+
+/* Seriøst tema dropper konfetti, glitter og hoppende feiringseffekter */
+[data-theme="serious"] .confetti-piece,
+[data-theme="serious"] .sparkle-drift,
+[data-theme="serious"] .mascot-sparkle {
+  display: none;
+}
+
+[data-theme="serious"] .animate-wiggle,
+[data-theme="serious"] .animate-float,
+[data-theme="serious"] .animate-badge-glow,
+[data-theme="serious"] .mascot-mood-celebrate {
+  animation: none;
+}
+
+[data-theme="serious"] .module-banner {
+  filter: saturate(0.45) brightness(0.8);
 }
 
 @keyframes pop-in {

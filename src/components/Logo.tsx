@@ -1,8 +1,9 @@
 import { useId } from "react";
 
 /**
- * Ikonmerket ("V" for Vibeskolen/vibecoding) - samme lilla-farger og
- * sparkle-motiv som maskoten Byte, så logoen kjennes igjen som samme app.
+ * Ikonmerket ("V" for Vibeskolen/vibecoding) - bruker samme temafargevariabler
+ * som maskoten Byte, så logoen følger med når brukeren bytter mellom
+ * "lekent" og "seriøst" tema.
  */
 export function LogoMark({
   className = "",
@@ -23,8 +24,8 @@ export function LogoMark({
     >
       <defs>
         <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8B5CF6" />
-          <stop offset="100%" stopColor="#6D28D9" />
+          <stop offset="0%" stopColor="var(--mascot-primary)" />
+          <stop offset="100%" stopColor="var(--mascot-primary-dark)" />
         </linearGradient>
       </defs>
       <rect width="128" height="128" rx="30" fill={`url(#${gradId})`} />
@@ -38,7 +39,7 @@ export function LogoMark({
       />
       <path
         d="M99,14 L101.83,23.17 L111,26 L101.83,28.83 L99,38 L96.17,28.83 L87,26 L96.17,23.17 Z"
-        fill="#FACC15"
+        fill="var(--mascot-highlight)"
       />
     </svg>
   );
@@ -47,10 +48,10 @@ export function LogoMark({
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span className={`font-heading font-extrabold tracking-tight ${className}`}>
-      <span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-accent-500 to-accent-700 bg-clip-text text-transparent">
         Vibe
       </span>
-      <span className="text-violet-950">skolen</span>
+      <span className="text-brand-900">skolen</span>
     </span>
   );
 }

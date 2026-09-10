@@ -31,7 +31,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-hidden bg-gradient-to-b from-violet-100 via-fuchsia-50 to-white px-6 py-16 text-center">
+    <main className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-hidden bg-gradient-to-b from-brand-100 via-brand-50 to-background px-6 py-16 text-center">
       {sparkles.map((s, i) => (
         <span
           key={i}
@@ -55,7 +55,7 @@ export default function Home() {
       <Mascot mood="celebrate" className="animate-float h-40 w-40" />
 
       <div className="flex flex-col gap-3">
-        <p className="max-w-md text-lg font-semibold text-violet-700">
+        <p className="max-w-md text-lg font-semibold text-brand-700">
           Lær å bygge programvare sammen med AI - i små, lekne steg som
           tilpasser seg akkurat ditt nivå.
         </p>
@@ -69,7 +69,7 @@ export default function Home() {
         ].map((item) => (
           <span
             key={item}
-            className="rounded-full bg-white px-4 py-2 text-sm font-bold text-violet-700 shadow-sm"
+            className="rounded-full border border-brand-100 bg-surface px-4 py-2 text-sm font-bold text-brand-700 shadow-sm"
           >
             {item}
           </span>
@@ -80,24 +80,24 @@ export default function Home() {
         <PrimaryButton className="text-lg">Kom i gang - gratis</PrimaryButton>
       </Link>
 
-      <p className="text-sm font-semibold text-violet-600">
+      <p className="text-sm font-semibold text-accent-600">
         Har du allerede en konto?{" "}
-        <Link href="/login" className="text-violet-700 underline hover:text-violet-900">
+        <Link href="/login" className="text-brand-700 underline hover:text-brand-900">
           Logg inn
         </Link>
       </p>
 
-      <div className="flex flex-col items-center gap-2 rounded-2xl bg-white/70 px-6 py-4 shadow-sm">
-        <h2 className="font-heading text-xl font-bold text-violet-800">
+      <div className="flex flex-col items-center gap-2 rounded-2xl border border-brand-100 bg-surface/70 px-6 py-4 shadow-sm">
+        <h2 className="font-heading text-xl font-bold text-brand-800">
           Takk til Astar kursholdere
         </h2>
-        <p className="max-w-sm text-sm font-medium text-violet-600">
+        <p className="max-w-sm text-sm font-medium text-accent-600">
           Stor takk til{" "}
           <a
             href="https://www.astar.sh"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold underline decoration-2 underline-offset-2 hover:text-violet-800"
+            className="font-bold underline decoration-2 underline-offset-2 hover:text-brand-800"
           >
             Astar
           </a>{" "}
@@ -105,7 +105,7 @@ export default function Home() {
         </p>
       </div>
 
-      <p className="text-xs font-semibold text-violet-400">
+      <p className="text-xs font-semibold text-brand-400">
         Testversjon &middot; fremgangen din lagres kun i denne nettleseren
       </p>
     </main>

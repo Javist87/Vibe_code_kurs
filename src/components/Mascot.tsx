@@ -41,12 +41,12 @@ export function Mascot({
 
       <g className={`mascot-breathe ${MOOD_MOTION_CLASS[mood]}`}>
         {/* antenna */}
-        <line x1="100" y1="20" x2="100" y2="45" stroke="#7C3AED" strokeWidth="6" strokeLinecap="round" />
+        <line x1="100" y1="20" x2="100" y2="45" stroke="var(--mascot-antenna)" strokeWidth="6" strokeLinecap="round" />
         <circle
           cx="100"
           cy="16"
           r="9"
-          fill={mood === "celebrate" ? "#FACC15" : "#F472B6"}
+          fill={mood === "celebrate" ? "var(--mascot-celebrate)" : "var(--mascot-highlight)"}
         />
 
         {/* body/head */}
@@ -54,22 +54,22 @@ export function Mascot({
         <rect x="35" y="45" width="130" height="115" rx="34" fill="url(#byteShine)" opacity="0.35" />
 
         {/* ears */}
-        <circle cx="30" cy="100" r="12" fill="#A78BFA" />
-        <circle cx="170" cy="100" r="12" fill="#A78BFA" />
+        <circle cx="30" cy="100" r="12" fill="var(--mascot-ear)" />
+        <circle cx="170" cy="100" r="12" fill="var(--mascot-ear)" />
 
         {/* face plate */}
         <rect x="55" y="70" width="90" height="70" rx="24" fill="#ffffff" opacity="0.95" />
 
         {/* eyes (blink automatically for a living feel) */}
         <g className="mascot-eyes">
-          <ellipse cx="80" cy={100 + eye.cyOffset} rx="8" ry={eye.ry} fill="#4C1D95" />
-          <ellipse cx="120" cy={100 + eye.cyOffset} rx="8" ry={eye.ry} fill="#4C1D95" />
+          <ellipse cx="80" cy={100 + eye.cyOffset} rx="8" ry={eye.ry} fill="var(--mascot-ink)" />
+          <ellipse cx="120" cy={100 + eye.cyOffset} rx="8" ry={eye.ry} fill="var(--mascot-ink)" />
         </g>
 
         {/* mouth */}
         <path
           d={MOUTHS[mood]}
-          stroke="#4C1D95"
+          stroke="var(--mascot-ink)"
           strokeWidth="6"
           fill="none"
           strokeLinecap="round"
@@ -77,7 +77,7 @@ export function Mascot({
       </g>
 
       {mood === "celebrate" && (
-        <g fill="#FACC15">
+        <g fill="var(--mascot-celebrate)">
           <path className="mascot-sparkle" d="M20 60 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" />
           <path
             className="mascot-sparkle"
@@ -87,7 +87,7 @@ export function Mascot({
           <path
             className="mascot-sparkle"
             style={{ animationDelay: "0.4s" }}
-            fill="#F472B6"
+            fill="var(--mascot-highlight)"
             d="M175 55 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z"
           />
         </g>
@@ -95,8 +95,8 @@ export function Mascot({
 
       <defs>
         <linearGradient id="byteGradient" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8B5CF6" />
-          <stop offset="100%" stopColor="#6D28D9" />
+          <stop offset="0%" stopColor="var(--mascot-primary)" />
+          <stop offset="100%" stopColor="var(--mascot-primary-dark)" />
         </linearGradient>
         <linearGradient id="byteShine" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#ffffff" />

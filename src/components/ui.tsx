@@ -10,7 +10,7 @@ export function PrimaryButton({
   return (
     <button
       {...props}
-      className={`rounded-2xl bg-violet-600 px-6 py-3 font-extrabold text-white shadow-[0_4px_0_0_#5B21B6] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-violet-300 disabled:shadow-none ${className}`}
+      className={`rounded-2xl bg-accent-600 px-6 py-3 font-extrabold text-white shadow-[0_4px_0_0_var(--shadow-btn)] transition active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:bg-brand-300 disabled:shadow-none ${className}`}
     />
   );
 }
@@ -22,7 +22,7 @@ export function SecondaryButton({
   return (
     <button
       {...props}
-      className={`rounded-2xl border-2 border-violet-200 bg-white px-6 py-3 font-extrabold text-violet-700 transition hover:bg-violet-50 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+      className={`rounded-2xl border-2 border-brand-200 bg-surface px-6 py-3 font-extrabold text-brand-700 transition hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
     />
   );
 }
@@ -42,8 +42,8 @@ export function FeedbackBanner({
     <div
       className={`animate-pop-in rounded-2xl border-2 p-4 ${
         correct
-          ? "border-emerald-300 bg-emerald-50 text-emerald-800 shadow-[0_0_0_4px_rgba(52,211,153,0.15)]"
-          : "border-rose-300 bg-rose-50 text-rose-800"
+          ? "border-[color:var(--success-border)] bg-[color:var(--success-bg)] text-[color:var(--success-text)] shadow-[0_0_0_4px_rgba(52,211,153,0.15)]"
+          : "border-[color:var(--danger-border)] bg-[color:var(--danger-bg)] text-[color:var(--danger-text)]"
       }`}
     >
       <p className="font-extrabold">{heading}</p>

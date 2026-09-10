@@ -6,7 +6,7 @@ export const CURRICULUM: Module[] = [
     title: "Hva er vibecoding?",
     description: "Bli kjent med tankesettet bak å bygge sammen med AI.",
     emoji: "✨",
-    gradient: "from-violet-500 to-fuchsia-500",
+    gradient: "from-accent-500 to-fuchsia-500",
     lessons: [
       {
         id: "intro-1",

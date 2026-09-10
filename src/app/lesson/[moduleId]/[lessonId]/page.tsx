@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useProfile } from "@/context/ProfileContext";
+import { useSettings } from "@/context/SettingsContext";
 import { getLesson, getModule, isLessonUnlocked } from "@/lib/curriculum";
 import { TaskRenderer } from "@/components/tasks/TaskRenderer";
 import { Mascot, MascotMood } from "@/components/Mascot";
@@ -18,6 +19,7 @@ export default function LessonPage() {
   const params = useParams<{ moduleId: string; lessonId: string }>();
   const router = useRouter();
   const { profile, isLoaded, completeLesson } = useProfile();
+  const { settings } = useSettings();
 
   const moduleId = params.moduleId;
   const lessonId = params.lessonId;
@@ -97,33 +99,33 @@ export default function LessonPage() {
 
   if (phase === "summary" && summary) {
     return (
-      <main className="flex flex-1 flex-col items-center justify-center gap-6 bg-gradient-to-b from-violet-100 to-white px-6 py-10 text-center">
+      <main className="flex flex-1 flex-col items-center justify-center gap-6 bg-gradient-to-b from-brand-100 to-background px-6 py-10 text-center">
         <Confetti pieces={summary.leveledUpStreak ? 70 : 40} />
         <Mascot mood="celebrate" className="h-32 w-32 animate-pop-in" />
-        <h1 className="font-heading text-3xl font-extrabold text-violet-900">
+        <h1 className="font-heading text-3xl font-extrabold text-brand-900">
           {completeHeading}
         </h1>
-        <p className="rounded-full bg-amber-100 px-5 py-2 font-extrabold text-amber-700">
+        <p className="rounded-full bg-[color:var(--xp-bg)] px-5 py-2 font-extrabold text-[color:var(--xp-text)]">
           + {summary.xp} XP
         </p>
 
         {summary.leveledUpStreak && (
-          <p className="animate-pop-in rounded-full bg-orange-100 px-5 py-2 font-extrabold text-orange-600">
+          <p className="animate-pop-in rounded-full bg-[color:var(--streak-bg)] px-5 py-2 font-extrabold text-[color:var(--streak-text)]">
             {streakMessage(profile.streak)}
           </p>
         )}
 
         {earnedBadgeDetails.length > 0 && (
           <div className="flex flex-col items-center gap-2">
-            <p className="font-bold text-violet-700">Ny premie låst opp!</p>
+            <p className="font-bold text-brand-700">Ny premie låst opp!</p>
             <div className="flex flex-wrap justify-center gap-3">
               {earnedBadgeDetails.map((badge) => (
                 <div
                   key={badge.id}
-                  className="animate-pop-in animate-badge-glow flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-md"
+                  className="animate-pop-in animate-badge-glow flex flex-col items-center gap-1 rounded-2xl border border-brand-100 bg-surface p-3 shadow-md"
                 >
                   <span className="text-3xl">{badge.emoji}</span>
-                  <span className="text-xs font-bold text-violet-800">
+                  <span className="text-xs font-bold text-brand-800">
                     {badge.title}
                   </span>
                 </div>
@@ -142,19 +144,21 @@ export default function LessonPage() {
   const currentTask = lesson.tasks[taskIndex];
 
   return (
-    <main className="flex flex-1 flex-col bg-gradient-to-b from-violet-50 to-white">
-      <WanderingMascot mood={mood} active={phase === "task"} />
+    <main className="flex flex-1 flex-col bg-gradient-to-b from-brand-50 to-background">
+      {settings.theme === "playful" && (
+        <WanderingMascot mood={mood} active={phase === "task"} />
+      )}
       <header className="flex items-center gap-3 px-5 py-4">
         <Link
           href="/learn"
-          className="text-2xl font-bold text-violet-300 hover:text-violet-500"
+          className="text-2xl font-bold text-brand-300 hover:text-accent-500"
           aria-label="Avslutt leksjon"
         >
           ✕
         </Link>
-        <div className="h-3 flex-1 overflow-hidden rounded-full bg-violet-100">
+        <div className="h-3 flex-1 overflow-hidden rounded-full bg-brand-100">
           <div
-            className="h-full rounded-full bg-violet-500 transition-all duration-300"
+            className="h-full rounded-full bg-accent-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -165,7 +169,7 @@ export default function LessonPage() {
       </header>
 
       <div className="mx-auto w-full max-w-lg flex-1 px-5 pb-10">
-        <p className="mb-4 text-sm font-bold text-violet-400">
+        <p className="mb-4 text-sm font-bold text-brand-400">
           {lesson.title} &middot; oppgave {taskIndex + 1} av {totalTasks}
         </p>
         <TaskRenderer
