@@ -7,6 +7,7 @@ import { useProfile } from "@/context/ProfileContext";
 import { getLesson, getModule, isLessonUnlocked } from "@/lib/curriculum";
 import { TaskRenderer } from "@/components/tasks/TaskRenderer";
 import { Mascot, MascotMood } from "@/components/Mascot";
+import { WanderingMascot } from "@/components/WanderingMascot";
 import { Confetti } from "@/components/Confetti";
 import { PrimaryButton } from "@/components/ui";
 import { XpBurst, XpPopup } from "@/components/XpBurst";
@@ -142,6 +143,7 @@ export default function LessonPage() {
 
   return (
     <main className="flex flex-1 flex-col bg-gradient-to-b from-violet-50 to-white">
+      <WanderingMascot mood={mood} active={phase === "task"} />
       <header className="flex items-center gap-3 px-5 py-4">
         <Link
           href="/learn"
