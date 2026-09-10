@@ -4,9 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useProfile } from "@/context/ProfileContext";
+import { useSettings } from "@/context/SettingsContext";
 import { getLesson, getModule, isLessonUnlocked } from "@/lib/curriculum";
 import { TaskRenderer } from "@/components/tasks/TaskRenderer";
 import { Mascot, MascotMood } from "@/components/Mascot";
+import { WanderingMascot } from "@/components/WanderingMascot";
 import { Confetti } from "@/components/Confetti";
 import { PrimaryButton } from "@/components/ui";
 import { XpBurst, XpPopup } from "@/components/XpBurst";
@@ -17,6 +19,7 @@ export default function LessonPage() {
   const params = useParams<{ moduleId: string; lessonId: string }>();
   const router = useRouter();
   const { profile, isLoaded, completeLesson } = useProfile();
+  const { settings } = useSettings();
 
   const moduleId = params.moduleId;
   const lessonId = params.lessonId;
@@ -142,6 +145,9 @@ export default function LessonPage() {
 
   return (
     <main className="flex flex-1 flex-col bg-gradient-to-b from-brand-50 to-background">
+      {settings.theme === "playful" && (
+        <WanderingMascot mood={mood} active={phase === "task"} />
+      )}
       <header className="flex items-center gap-3 px-5 py-4">
         <Link
           href="/learn"

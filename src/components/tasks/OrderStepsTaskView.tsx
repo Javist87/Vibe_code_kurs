@@ -20,17 +20,20 @@ export function OrderStepsTaskView({
   task: OrderStepsTask;
   onComplete: (correct: boolean) => void;
 }) {
-  const shuffled = useMemo(() => shuffle(task.steps), [task]);
-  const [remaining, setRemaining] = useState<string[]>(shuffled);
-  const [chosen, setChosen] = useState<string[]>([]);
+  const shuffled = useMemo(
+    () => shuffle(task.steps.map((_, i) => i)),
+    [task]
+  );
+  const [remaining, setRemaining] = useState<number[]>(shuffled);
+  const [chosen, setChosen] = useState<number[]>([]);
   const [checked, setChecked] = useState(false);
 
-  const isCorrect = task.steps.every((step, i) => chosen[i] === step);
+  const isCorrect = chosen.every((stepIndex, i) => stepIndex === i);
 
-  const pick = (step: string) => {
+  const pick = (stepIndex: number) => {
     if (checked) return;
-    setChosen((prev) => [...prev, step]);
-    setRemaining((prev) => prev.filter((s) => s !== step));
+    setChosen((prev) => [...prev, stepIndex]);
+    setRemaining((prev) => prev.filter((i) => i !== stepIndex));
   };
 
   const undoLast = () => {
@@ -48,15 +51,15 @@ export function OrderStepsTaskView({
 
       <div className="min-h-[3.5rem] rounded-2xl border-2 border-dashed border-brand-300 bg-brand-50 p-3">
         <ol className="flex flex-col gap-2">
-          {chosen.map((step, i) => (
+          {chosen.map((stepIndex, i) => (
             <li
-              key={step}
+              key={stepIndex}
               className="animate-pop-in flex items-center gap-2 rounded-xl border border-brand-100 bg-surface px-3 py-2 font-semibold text-brand-900 shadow-sm"
             >
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-600 text-xs font-bold text-white">
                 {i + 1}
               </span>
-              {step}
+              {task.steps[stepIndex]}
             </li>
           ))}
           {chosen.length === 0 && (
@@ -68,15 +71,15 @@ export function OrderStepsTaskView({
       </div>
 
       <div className="flex flex-wrap gap-2">
-        {remaining.map((step) => (
+        {remaining.map((stepIndex) => (
           <button
-            key={step}
+            key={stepIndex}
             type="button"
             disabled={checked}
-            onClick={() => pick(step)}
+            onClick={() => pick(stepIndex)}
             className="rounded-xl border-2 border-brand-200 bg-surface px-3 py-2 font-semibold text-brand-800 transition hover:border-brand-400 disabled:cursor-default"
           >
-            {step}
+            {task.steps[stepIndex]}
           </button>
         ))}
       </div>
