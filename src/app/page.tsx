@@ -78,6 +78,13 @@ export default function Home() {
         <PrimaryButton className="text-lg">Kom i gang - gratis</PrimaryButton>
       </Link>
 
+      <p className="text-sm font-semibold text-violet-600">
+        Har du allerede en konto?{" "}
+        <Link href="/login" className="text-violet-700 underline hover:text-violet-900">
+          Logg inn
+        </Link>
+      </p>
+
       <div className="flex flex-col items-center gap-2 rounded-2xl bg-white/70 px-6 py-4 shadow-sm">
         <h2 className="font-heading text-xl font-bold text-violet-800">
           Takk til Astar kursholdere
