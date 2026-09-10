@@ -21,8 +21,32 @@ export default function Home() {
     return <div className="flex flex-1 items-center justify-center" />;
   }
 
+  const sparkles = [
+    { left: "12%", top: "20%", delay: "0s", duration: "5s", size: "text-2xl" },
+    { left: "85%", top: "18%", delay: "1.2s", duration: "6s", size: "text-xl" },
+    { left: "78%", top: "62%", delay: "0.6s", duration: "5.5s", size: "text-lg" },
+    { left: "8%", top: "68%", delay: "1.8s", duration: "6.5s", size: "text-xl" },
+    { left: "50%", top: "10%", delay: "0.9s", duration: "5.8s", size: "text-lg" },
+  ];
+
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-8 bg-gradient-to-b from-violet-100 via-fuchsia-50 to-white px-6 py-16 text-center">
+    <main className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-hidden bg-gradient-to-b from-violet-100 via-fuchsia-50 to-white px-6 py-16 text-center">
+      {sparkles.map((s, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className={`sparkle-drift -z-10 ${s.size}`}
+          style={{
+            left: s.left,
+            top: s.top,
+            animationDelay: s.delay,
+            animationDuration: s.duration,
+          }}
+        >
+          ✨
+        </span>
+      ))}
+
       <Mascot mood="celebrate" className="animate-float h-40 w-40" />
 
       <div className="flex flex-col gap-3">
