@@ -9,6 +9,7 @@ import { ModulePath } from "@/components/ModulePath";
 import { XpPill, StreakPill } from "@/components/HeaderStats";
 import { Mascot } from "@/components/Mascot";
 import { LEVEL_LABELS } from "@/lib/types";
+import { learnPageGreeting } from "@/lib/motivation";
 
 export default function LearnPage() {
   const { profile, isLoaded } = useProfile();
@@ -28,7 +29,7 @@ export default function LearnPage() {
     <main className="flex flex-1 flex-col bg-gradient-to-b from-violet-50 to-white">
       <header className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-violet-100 bg-white/90 px-5 py-3 backdrop-blur">
         <Link href="/profile" className="flex items-center gap-2">
-          <Mascot mood="happy" className="h-10 w-10" />
+          <Mascot mood={profile.streak > 0 ? "celebrate" : "happy"} className="h-10 w-10" />
           <div className="text-left">
             <p className="text-sm font-extrabold text-violet-900 leading-none">
               {profile.name}
@@ -43,6 +44,10 @@ export default function LearnPage() {
           <XpPill xp={profile.xp} />
         </div>
       </header>
+
+      <p className="px-5 pt-6 text-center font-heading text-lg font-extrabold text-violet-800">
+        {learnPageGreeting(profile.name, profile.streak)}
+      </p>
 
       <div className="flex flex-col gap-10 px-4 py-8">
         {CURRICULUM.map((curriculumModule) => (

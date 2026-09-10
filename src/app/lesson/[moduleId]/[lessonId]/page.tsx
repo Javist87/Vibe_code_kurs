@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useProfile } from "@/context/ProfileContext";
@@ -9,7 +9,9 @@ import { TaskRenderer } from "@/components/tasks/TaskRenderer";
 import { Mascot, MascotMood } from "@/components/Mascot";
 import { Confetti } from "@/components/Confetti";
 import { PrimaryButton } from "@/components/ui";
+import { XpBurst, XpPopup } from "@/components/XpBurst";
 import { BADGES } from "@/lib/badges";
+import { LESSON_COMPLETE_HEADINGS, pickRandom, streakMessage } from "@/lib/motivation";
 
 export default function LessonPage() {
   const params = useParams<{ moduleId: string; lessonId: string }>();
@@ -29,7 +31,11 @@ export default function LessonPage() {
   const [summary, setSummary] = useState<{
     xp: number;
     newBadgeIds: string[];
+    leveledUpStreak: boolean;
   } | null>(null);
+  const [xpPopups, setXpPopups] = useState<XpPopup[]>([]);
+  const xpPopupId = useRef(0);
+  const [completeHeading] = useState(() => pickRandom(LESSON_COMPLETE_HEADINGS));
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -66,12 +72,24 @@ export default function LessonPage() {
     const newXp = xpEarned + gained;
     setXpEarned(newXp);
 
+    if (gained > 0) {
+      const id = xpPopupId.current++;
+      setXpPopups((prev) => [...prev, { id, amount: gained }]);
+      setTimeout(() => {
+        setXpPopups((prev) => prev.filter((p) => p.id !== id));
+      }, 1100);
+    }
+
     if (taskIndex + 1 < totalTasks) {
       setTaskIndex((i) => i + 1);
       setTimeout(() => setMood("happy"), 900);
     } else {
       const result = completeLesson(lesson.id, newXp);
-      setSummary({ xp: result.xpGained, newBadgeIds: result.newBadgeIds });
+      setSummary({
+        xp: result.xpGained,
+        newBadgeIds: result.newBadgeIds,
+        leveledUpStreak: result.leveledUpStreak,
+      });
       setPhase("summary");
     }
   };
@@ -79,14 +97,20 @@ export default function LessonPage() {
   if (phase === "summary" && summary) {
     return (
       <main className="flex flex-1 flex-col items-center justify-center gap-6 bg-gradient-to-b from-violet-100 to-white px-6 py-10 text-center">
-        <Confetti />
+        <Confetti pieces={summary.leveledUpStreak ? 70 : 40} />
         <Mascot mood="celebrate" className="h-32 w-32 animate-pop-in" />
         <h1 className="font-heading text-3xl font-extrabold text-violet-900">
-          Leksjon fullført! 🎉
+          {completeHeading}
         </h1>
         <p className="rounded-full bg-amber-100 px-5 py-2 font-extrabold text-amber-700">
           + {summary.xp} XP
         </p>
+
+        {summary.leveledUpStreak && (
+          <p className="animate-pop-in rounded-full bg-orange-100 px-5 py-2 font-extrabold text-orange-600">
+            {streakMessage(profile.streak)}
+          </p>
+        )}
 
         {earnedBadgeDetails.length > 0 && (
           <div className="flex flex-col items-center gap-2">
@@ -95,7 +119,7 @@ export default function LessonPage() {
               {earnedBadgeDetails.map((badge) => (
                 <div
                   key={badge.id}
-                  className="animate-pop-in flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-md"
+                  className="animate-pop-in animate-badge-glow flex flex-col items-center gap-1 rounded-2xl bg-white p-3 shadow-md"
                 >
                   <span className="text-3xl">{badge.emoji}</span>
                   <span className="text-xs font-bold text-violet-800">
@@ -132,7 +156,10 @@ export default function LessonPage() {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <Mascot mood={mood} className="h-10 w-10 shrink-0" />
+        <div className="relative shrink-0">
+          <Mascot mood={mood} className="h-10 w-10" />
+          <XpBurst popups={xpPopups} />
+        </div>
       </header>
 
       <div className="mx-auto w-full max-w-lg flex-1 px-5 pb-10">

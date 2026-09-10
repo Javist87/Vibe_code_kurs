@@ -1,4 +1,7 @@
-import { ButtonHTMLAttributes } from "react";
+"use client";
+
+import { ButtonHTMLAttributes, useState } from "react";
+import { CORRECT_MESSAGES, INCORRECT_MESSAGES, pickRandom } from "@/lib/motivation";
 
 export function PrimaryButton({
   className = "",
@@ -31,17 +34,19 @@ export function FeedbackBanner({
   correct: boolean;
   explanation: string;
 }) {
+  const [heading] = useState(() =>
+    pickRandom(correct ? CORRECT_MESSAGES : INCORRECT_MESSAGES)
+  );
+
   return (
     <div
       className={`animate-pop-in rounded-2xl border-2 p-4 ${
         correct
-          ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+          ? "border-emerald-300 bg-emerald-50 text-emerald-800 shadow-[0_0_0_4px_rgba(52,211,153,0.15)]"
           : "border-rose-300 bg-rose-50 text-rose-800"
       }`}
     >
-      <p className="font-extrabold">
-        {correct ? "Riktig! 🎉" : "Ikke helt - men bra forsøkt!"}
-      </p>
+      <p className="font-extrabold">{heading}</p>
       <p className="mt-1 text-sm leading-relaxed">{explanation}</p>
     </div>
   );
