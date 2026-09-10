@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mascot } from "@/components/Mascot";
+import { Logo } from "@/components/Logo";
 import { useProfile } from "@/context/ProfileContext";
 import { PrimaryButton } from "@/components/ui";
 
@@ -40,6 +41,8 @@ export default function LoginPage() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center bg-gradient-to-b from-brand-50 to-background px-6 py-10">
       <div className="flex w-full max-w-sm flex-col items-center gap-6">
+        <Logo markClassName="h-9 w-9" wordmarkClassName="text-xl" />
+
         <Mascot mood={status === "loading" ? "thinking" : "happy"} className="h-24 w-24" />
 
         <div className="text-center">

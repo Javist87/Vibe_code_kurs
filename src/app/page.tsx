@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Mascot } from "@/components/Mascot";
+import { Logo } from "@/components/Logo";
 import { useProfile } from "@/context/ProfileContext";
 import { PrimaryButton } from "@/components/ui";
 
@@ -47,12 +48,13 @@ export default function Home() {
         </span>
       ))}
 
+      <h1>
+        <Logo markClassName="h-12 w-12" wordmarkClassName="text-3xl sm:text-4xl" />
+      </h1>
+
       <Mascot mood="celebrate" className="animate-float h-40 w-40" />
 
       <div className="flex flex-col gap-3">
-        <h1 className="font-heading text-4xl font-extrabold text-brand-900 sm:text-5xl">
-          Vibeskolen
-        </h1>
         <p className="max-w-md text-lg font-semibold text-brand-700">
           Lær å bygge programvare sammen med AI - i små, lekne steg som
           tilpasser seg akkurat ditt nivå.
