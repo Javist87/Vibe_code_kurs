@@ -78,9 +78,23 @@ export default function Home() {
         <PrimaryButton className="text-lg">Kom i gang - gratis</PrimaryButton>
       </Link>
 
-      <h2 className="font-heading text-xl font-bold text-violet-800">
-        Takk til Astar kursholdere
-      </h2>
+      <div className="flex flex-col items-center gap-2 rounded-2xl bg-white/70 px-6 py-4 shadow-sm">
+        <h2 className="font-heading text-xl font-bold text-violet-800">
+          Takk til Astar kursholdere
+        </h2>
+        <p className="max-w-sm text-sm font-medium text-violet-600">
+          Stor takk til{" "}
+          <a
+            href="https://www.astar.sh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold underline decoration-2 underline-offset-2 hover:text-violet-800"
+          >
+            Astar
+          </a>{" "}
+          for opplæringen som gjorde dette kurset mulig.
+        </p>
+      </div>
 
       <p className="text-xs font-semibold text-violet-400">
         Testversjon &middot; fremgangen din lagres kun i denne nettleseren
