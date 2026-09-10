@@ -87,11 +87,11 @@ export default function OnboardingPage() {
   };
 
   return (
-    <main className="flex flex-1 flex-col items-center bg-gradient-to-b from-violet-50 to-white px-6 py-10">
+    <main className="flex flex-1 flex-col items-center bg-gradient-to-b from-brand-50 to-background px-6 py-10">
       <div className="w-full max-w-md">
-        <div className="h-3 w-full overflow-hidden rounded-full bg-violet-100">
+        <div className="h-3 w-full overflow-hidden rounded-full bg-brand-100">
           <div
-            className="h-full rounded-full bg-violet-500 transition-all duration-300"
+            className="h-full rounded-full bg-accent-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -101,7 +101,7 @@ export default function OnboardingPage() {
 
           {step === 0 ? (
             <div className="flex w-full flex-col items-center gap-4 animate-pop-in">
-              <h1 className="font-heading text-2xl font-extrabold text-violet-900">
+              <h1 className="font-heading text-2xl font-extrabold text-brand-900">
                 Hva skal vi kalle deg?
               </h1>
               <input
@@ -109,7 +109,7 @@ export default function OnboardingPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Skriv navnet ditt"
-                className="w-full rounded-2xl border-2 border-violet-200 bg-white px-4 py-3 text-center text-lg font-bold text-violet-900 outline-none focus:border-violet-500"
+                className="w-full rounded-2xl border-2 border-brand-200 bg-surface px-4 py-3 text-center text-lg font-bold text-brand-900 outline-none focus:border-accent-500"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && name.trim()) setStep(1);
                 }}
@@ -127,7 +127,7 @@ export default function OnboardingPage() {
               key={QUESTIONS[step - 1].id}
               className="flex w-full flex-col items-center gap-4 animate-pop-in"
             >
-              <h1 className="font-heading text-2xl font-extrabold text-violet-900">
+              <h1 className="font-heading text-2xl font-extrabold text-brand-900">
                 {QUESTIONS[step - 1].question}
               </h1>
               <div className="flex w-full flex-col gap-3">
@@ -145,7 +145,7 @@ export default function OnboardingPage() {
                 <button
                   type="button"
                   onClick={() => setStep((s) => s - 1)}
-                  className="text-sm font-bold text-violet-400 hover:text-violet-600"
+                  className="text-sm font-bold text-brand-400 hover:text-accent-600"
                 >
                   Tilbake
                 </button>

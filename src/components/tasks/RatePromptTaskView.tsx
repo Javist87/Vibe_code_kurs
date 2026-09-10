@@ -18,11 +18,11 @@ export function RatePromptTaskView({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-2xl bg-violet-50 p-4">
-        <p className="text-sm font-semibold text-violet-500">Situasjon</p>
-        <p className="mt-1 text-violet-900">{task.scenario}</p>
+      <div className="rounded-2xl bg-brand-50 p-4">
+        <p className="text-sm font-semibold text-accent-500">Situasjon</p>
+        <p className="mt-1 text-brand-900">{task.scenario}</p>
       </div>
-      <div className="rounded-2xl border-2 border-dashed border-violet-200 bg-white p-4 font-mono text-sm text-violet-800">
+      <div className="rounded-2xl border-2 border-dashed border-brand-200 bg-surface p-4 font-mono text-sm text-brand-800">
         &ldquo;{task.examplePrompt}&rdquo;
       </div>
 
@@ -30,15 +30,15 @@ export function RatePromptTaskView({
         {task.choices.map((choice, i) => {
           const isSelected = selected === i;
           let stateClasses =
-            "border-violet-100 bg-white hover:border-violet-300";
+            "border-brand-100 bg-surface hover:border-brand-300";
           if (checked && isSelected) {
             stateClasses = choice.correct
-              ? "border-emerald-400 bg-emerald-50"
-              : "border-rose-400 bg-rose-50";
+              ? "border-[color:var(--success-border)] bg-[color:var(--success-bg)]"
+              : "border-[color:var(--danger-border)] bg-[color:var(--danger-bg)]";
           } else if (checked && choice.correct) {
-            stateClasses = "border-emerald-400 bg-emerald-50";
+            stateClasses = "border-[color:var(--success-border)] bg-[color:var(--success-bg)]";
           } else if (isSelected) {
-            stateClasses = "border-violet-500 bg-violet-50";
+            stateClasses = "border-accent-500 bg-brand-50";
           }
 
           return (
@@ -47,7 +47,7 @@ export function RatePromptTaskView({
               type="button"
               disabled={checked}
               onClick={() => setSelected(i)}
-              className={`rounded-2xl border-2 px-4 py-3 text-left font-semibold text-violet-900 transition disabled:cursor-default ${stateClasses}`}
+              className={`rounded-2xl border-2 px-4 py-3 text-left font-semibold text-brand-900 transition disabled:cursor-default ${stateClasses}`}
             >
               {choice.label}
             </button>

@@ -42,25 +42,25 @@ export function OrderStepsTaskView({
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-heading text-xl font-bold text-violet-900">
+      <h2 className="font-heading text-xl font-bold text-brand-900">
         {task.instruction}
       </h2>
 
-      <div className="min-h-[3.5rem] rounded-2xl border-2 border-dashed border-violet-300 bg-violet-50 p-3">
+      <div className="min-h-[3.5rem] rounded-2xl border-2 border-dashed border-brand-300 bg-brand-50 p-3">
         <ol className="flex flex-col gap-2">
           {chosen.map((step, i) => (
             <li
               key={step}
-              className="animate-pop-in flex items-center gap-2 rounded-xl bg-white px-3 py-2 font-semibold text-violet-900 shadow-sm"
+              className="animate-pop-in flex items-center gap-2 rounded-xl border border-brand-100 bg-surface px-3 py-2 font-semibold text-brand-900 shadow-sm"
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent-600 text-xs font-bold text-white">
                 {i + 1}
               </span>
               {step}
             </li>
           ))}
           {chosen.length === 0 && (
-            <li className="text-sm font-medium text-violet-400">
+            <li className="text-sm font-medium text-brand-400">
               Trykk på stegene under i riktig rekkefølge
             </li>
           )}
@@ -74,7 +74,7 @@ export function OrderStepsTaskView({
             type="button"
             disabled={checked}
             onClick={() => pick(step)}
-            className="rounded-xl border-2 border-violet-200 bg-white px-3 py-2 font-semibold text-violet-800 transition hover:border-violet-400 disabled:cursor-default"
+            className="rounded-xl border-2 border-brand-200 bg-surface px-3 py-2 font-semibold text-brand-800 transition hover:border-brand-400 disabled:cursor-default"
           >
             {step}
           </button>

@@ -21,11 +21,11 @@ export function FillPromptTaskView({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-2xl bg-violet-50 p-4">
-        <p className="text-sm font-semibold text-violet-500">Situasjon</p>
-        <p className="mt-1 text-violet-900">{task.scenario}</p>
+      <div className="rounded-2xl bg-brand-50 p-4">
+        <p className="text-sm font-semibold text-accent-500">Situasjon</p>
+        <p className="mt-1 text-brand-900">{task.scenario}</p>
       </div>
-      <h2 className="font-heading text-lg font-bold text-violet-900">
+      <h2 className="font-heading text-lg font-bold text-brand-900">
         {task.instruction}
       </h2>
       <textarea
@@ -34,7 +34,7 @@ export function FillPromptTaskView({
         onChange={(e) => setValue(e.target.value)}
         placeholder={task.placeholder}
         rows={3}
-        className="w-full rounded-2xl border-2 border-violet-200 bg-white p-4 font-medium text-violet-900 outline-none focus:border-violet-500 disabled:bg-violet-50"
+        className="w-full rounded-2xl border-2 border-brand-200 bg-surface p-4 font-medium text-brand-900 outline-none focus:border-accent-500 disabled:bg-brand-50"
       />
 
       {checked ? (
