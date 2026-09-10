@@ -8,10 +8,26 @@ const listeners = new Set<Listener>();
 /** undefined = ikke lest fra localStorage i denne sesjonen ennå. */
 let cache: Profile | null | undefined = undefined;
 
+function isValidProfile(value: unknown): value is Profile {
+  if (!value || typeof value !== "object") return false;
+  const p = value as Record<string, unknown>;
+  return (
+    typeof p.name === "string" &&
+    typeof p.level === "string" &&
+    typeof p.xp === "number" &&
+    typeof p.streak === "number" &&
+    (p.lastActiveDate === null || typeof p.lastActiveDate === "string") &&
+    Array.isArray(p.completedLessons) &&
+    Array.isArray(p.earnedBadges)
+  );
+}
+
 function readFromLocalStorage(): Profile | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Profile) : null;
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    return isValidProfile(parsed) ? parsed : null;
   } catch {
     return null;
   }
