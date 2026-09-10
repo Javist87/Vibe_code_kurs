@@ -16,7 +16,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Vibekurs - lær vibecoding",
+  title: "Vibeskolen - lær vibecoding",
   description:
     "Lær å bygge programvare sammen med AI, steg for steg, på en lekende og motiverende måte.",
 };
