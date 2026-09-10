@@ -51,7 +51,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-3">
         <h1 className="font-heading text-4xl font-extrabold text-violet-900 sm:text-5xl">
-          Vibekurs
+          Vibeskolen
         </h1>
         <p className="max-w-md text-lg font-semibold text-violet-700">
           Lær å bygge programvare sammen med AI - i små, lekne steg som

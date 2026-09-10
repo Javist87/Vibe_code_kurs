@@ -1,4 +1,4 @@
-# Vibekurs
+# Vibeskolen
 
 En lekende, Duolingo-inspirert læringsapp som lærer nybegynnere å komme i gang med vibecoding - å bygge programvare i tett samarbeid med AI.
 
