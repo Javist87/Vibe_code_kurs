@@ -19,6 +19,14 @@ npm run dev
 
 Åpne [http://localhost:3000](http://localhost:3000).
 
+## Testing
+
+```bash
+npm test
+```
+
+Kjører enhetstester (Vitest) for streak-, XP- og badge-logikken samt pensumets integritet. Testene kjøres automatisk i CI på hver pull request, sammen med lint og build.
+
 ## Teknologi
 
 Next.js (App Router), React, TypeScript og Tailwind CSS. All applikasjonstilstand (profil, fremgang, XP, streak, premier) håndteres client-side og lagres i `localStorage` via `src/context/ProfileContext.tsx`.
